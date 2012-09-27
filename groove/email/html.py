@@ -11,7 +11,14 @@ logger = logging.getLogger(__name__)
 
 def send_html_email(recipients, template_prefix=None, context={}, from_address=None, headers={}):
     """
-    Sends an email with text and HTML content.
+    Sends an email with text and HTML content. Adds current site, media and static URLs to
+    template context.
+
+    If ``template_prefix`` is 'account/password_reset', the following templates
+    are necessary:
+        * account/password_reset.html (HTML version)
+        * account/password_reset.txt (plain text version)
+        * account/password_reset_subject.html (plain text subject, one line only)
     """
 
     # Ensure the recipients are a list
