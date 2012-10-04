@@ -15,9 +15,9 @@ def send_html_email(recipients, template_prefix=None, context={}, from_address=N
     template context.
 
     If ``template_prefix`` is 'account/password_reset', the following templates
-    are necessary:
-        * account/password_reset.html (HTML version)
+    are used:
         * account/password_reset.txt (plain text version)
+        * account/password_reset.html (HTML version)
         * account/password_reset_subject.html (plain text subject, one line only)
     """
 
