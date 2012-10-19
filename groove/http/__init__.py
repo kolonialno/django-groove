@@ -10,13 +10,13 @@ class JsonResponse(HttpResponse):
     serialization if given an object.
     """
 
-    def __init__(self, object=None, **kwargs):
+    def __init__(self, obj=None, **kwargs):
 
         # Perform JSON serialization
-        if object:
+        if obj:
             # Pretty print in debug mode
             indent_level = 4 if settings.DEBUG else 0
-            content = json.dumps(object, indent=indent_level)
+            content = json.dumps(obj, indent=indent_level)
         else:
             content = ''
 

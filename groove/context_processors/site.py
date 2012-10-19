@@ -10,8 +10,7 @@ def current_site(request):
     context = {}
 
     try:
-        current_site = Site.objects.get_current()
-        context['site'] = current_site
+        context['site'] = Site.objects.get_current()
 
     except Site.DoesNotExist:
         context['site'] = RequestSite(request)
