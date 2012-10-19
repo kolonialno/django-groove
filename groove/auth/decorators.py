@@ -7,14 +7,12 @@ def superuser_required(function):
     through obscurity.
 
     Usage in views:
-
         @superuser_required
         def index(request):
             ...
 
 
     Usage in URL config:
-
         url(r'^$', superuser_required('views.index'), name='index'),
     """
 
