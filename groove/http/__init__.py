@@ -1,3 +1,4 @@
+import datetime
 import json
 
 from django.conf import settings
@@ -14,9 +15,16 @@ class JsonResponse(HttpResponse):
 
         # Perform JSON serialization
         if obj:
+
             # Pretty print in debug mode
             indent_level = 4 if settings.DEBUG else 0
-            content = json.dumps(obj, indent=indent_level)
+
+            # datetime parsing
+            datetime_handler = lambda o: o.isoformat() if isinstance(o, datetime.datetime) else None
+
+            # Dump with Python's JSON module
+            content = json.dumps(obj, indent=indent_level, default=datetime_handler)
+
         else:
             content = ''
 
