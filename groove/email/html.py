@@ -9,7 +9,7 @@ from django.utils.encoding import force_unicode
 logger = logging.getLogger(__name__)
 
 
-def send_html_email(recipients, template_prefix=None, context={}, from_address=None, headers={}):
+def send_html_email(recipients, template_prefix, context={}, from_address=None, headers={}):
     """
     Sends an email with text and HTML content. Adds current site, media and 
     static URLs to template context.
@@ -76,7 +76,7 @@ def send_html_email(recipients, template_prefix=None, context={}, from_address=N
     # Try to send mail, log exceptions
     try:
         msg.send(fail_silently=False)
-    except Exception as ex:
+    except Exception:
         logger.exception('Sending email to %s with subject "%s" failed.' % (
             recipients, 
             subject
