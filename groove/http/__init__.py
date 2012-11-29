@@ -14,7 +14,7 @@ class JsonResponse(HttpResponse):
     def __init__(self, obj=None, **kwargs):
 
         # Perform JSON serialization
-        if obj:
+        if obj is not None:
 
             # Pretty print in debug mode
             indent_level = 4 if settings.DEBUG else 0
