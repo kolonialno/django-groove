@@ -4,8 +4,8 @@ from django.utils.translation import ugettext_lazy as _
 
 class TimestampedModel(models.Model):
     """
-    Abstract class that automatically adds timestamps upon creation and
-    modification.
+    Abstract class that automatically timestamps object instances upon 
+    creation and modification.
     """
 
     creation_time = models.DateTimeField(_('creation time'), auto_now_add=True)
