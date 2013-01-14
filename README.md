@@ -61,7 +61,7 @@ If ``template_prefix`` is 'account/welcome', the following templates
 are used:
 * account/welcome.txt (plain text version)
 * account/welcome.html (HTML version)
-* account/welcome_subject.html (plain text subject, one line only)
+* account/welcome_subject.txt (plain text subject, one line only)
 
 
 ### `groove.http.JsonResponse`

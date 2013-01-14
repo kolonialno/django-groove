@@ -18,7 +18,7 @@ def send_html_email(recipients, template_prefix, context={}, from_address=None, 
     are used:
         * account/password_reset.txt (plain text version)
         * account/password_reset.html (HTML version)
-        * account/password_reset_subject.html (plain text subject, one line only)
+        * account/password_reset_subject.txt (plain text subject, one line only)
     """
 
     # Ensure the recipients are a list
