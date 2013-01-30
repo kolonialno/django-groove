@@ -16,18 +16,21 @@ Install `django-groove` (available on PyPi):
 
 ## Components
 
-### `groove.auth.decorators.superuser_required`
+### `groove.auth.decorators`
 
-Decorator that limits a view to superusers. Raises a 404 if user is not a 
-superuser, security through obscurity.
+Two decorators that limits a view with Django User permissions, includes checks 
+for staff or super users. Raises a 404 if user does not have sufficient 
+permission, security through obscurity.
 
-Usage in views:
+Available decorators: `staff_required` and `superuser_required`.
+
+Example usage in views:
 
     @superuser_required
     def index(request):
         ...
 
-Usage in URL config:
+Example usage in URL config:
 
     url(r'^$', superuser_required('views.index'), name='index'),
 
