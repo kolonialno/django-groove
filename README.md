@@ -60,8 +60,8 @@ Usage:
     from groove.email.html import send_html_email
     email_sent = send_html_email('foo@example.com', 'account/welcome', {'user': user})
 
-If ``template_prefix`` is 'account/welcome', the following templates
-are used:
+With `template_prefix` as `'account/welcome'`, the following templates
+are rendered with `user` variable available:
 * account/welcome.txt (plain text version)
 * account/welcome.html (HTML version)
 * account/welcome_subject.txt (plain text subject, one line only)
