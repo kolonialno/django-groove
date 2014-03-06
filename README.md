@@ -1,7 +1,7 @@
 # Django Groove
 
-django-groove is a Django app with various utilities, such as a template 
-context processor that adds the current Django Site object and an utility 
+django-groove is a Django app with various utilities, such as a template
+context processor that adds the current Django Site object and an utility
 method for sending HTML mail.
 
 This is an early draft and work in progress.
@@ -18,8 +18,8 @@ Install `django-groove` (available on PyPi):
 
 ### `groove.auth.decorators`
 
-Two decorators that limits a view with Django User permissions, includes checks 
-for staff or super users. Raises a 404 if user does not have sufficient 
+Two decorators that limits a view with Django User permissions, includes checks
+for staff or super users. Raises a 404 if user does not have sufficient
 permission, security through obscurity.
 
 Available decorators: `staff_required` and `superuser_required`.
@@ -37,7 +37,7 @@ Example usage in URL config:
 
 ### `groove.context_processors.site.current_site`
 
-A template context processor that adds the current Django Site object to the 
+A template context processor that adds the current Django Site object to the
 template context. Uses `RequestSite` as fallback.
 
 Add this to your settings.py:
@@ -52,11 +52,11 @@ You can now use `{{ site.name }}` and `{{ site.domain }}` in all your templates.
 
 ### `groove.email.html.send_html_email`
 
-A shortcut to ease sending of HTML enabled email. Adds current site, media and 
+A shortcut to ease sending of HTML enabled email. Adds current site, media and
 static URLs to template context, if not present.
 
 Usage:
-    
+
     from groove.email.html import send_html_email
     email_sent = send_html_email('foo@example.com', 'account/welcome', {'user': user})
 
@@ -69,13 +69,13 @@ are rendered with `user` variable available:
 
 ### `groove.http.JsonResponse`
 
-An HTTP response class with JSON mime type, optionally dumps given object 
-to JSON.
+An HTTP response class with JSON mime type, optionally dumps given object
+to JSON. Also converts datetime and Decimal objects properly.
 
 
 ### `groove.models.abstract.TimestampedModel`
 
-Abstract Django class that automatically timestamps object instances upon 
+Abstract Django class that automatically timestamps object instances upon
 creation and modification.
 
 Inherit from `TimestampedModel` instead of `models.Model` to automatically add
@@ -84,7 +84,7 @@ Inherit from `TimestampedModel` instead of `models.Model` to automatically add
 
 ### `groove.storage.s3`
 
-Defines two `s3boto` storage classes to ease the separation of static and 
+Defines two `s3boto` storage classes to ease the separation of static and
 media files when using Amazon S3.
 
 

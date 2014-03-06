@@ -1,5 +1,8 @@
 # Django Groove Changelog
 
+## 0.3.2 (2014-03-06)
+* `JsonResponse`: Convert `Decimal` to `float`.
+
 ## 0.3.1 (2013-08-21)
 * Moved `L10NCharField` from `groove.haystack` to `groove.haystack_fields` since it caused an import error.
 

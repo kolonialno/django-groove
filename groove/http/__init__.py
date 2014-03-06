@@ -1,4 +1,5 @@
-import datetime
+from decimal import Decimal
+from datetime import datetime
 import json
 
 from django.conf import settings
@@ -19,11 +20,13 @@ class JsonResponse(HttpResponse):
             # Pretty print in debug mode
             indent_level = 4 if settings.DEBUG else 0
 
-            # datetime parsing
-            datetime_handler = lambda o: o.isoformat() if isinstance(o, datetime.datetime) else None
+            # datetime and decimal handling
+            def custom_handler(o):
+                if isinstance(o, datetime): return o.isoformat()
+                if isinstance(o, Decimal): return float(o)
 
             # Dump with Python's JSON module
-            content = json.dumps(obj, indent=indent_level, default=datetime_handler)
+            content = json.dumps(obj, indent=indent_level, default=custom_handler)
 
         else:
             content = ''
