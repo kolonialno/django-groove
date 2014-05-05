@@ -9,10 +9,16 @@ from django.utils.encoding import force_unicode
 logger = logging.getLogger(__name__)
 
 
-def send_html_email(recipients, template_prefix, context={}, from_address=None, headers={}):
+def send_html_email(recipients, template_prefix, context={}, from_address=None, headers={}, attachments=[]):
     """
-    Sends an email with text and HTML content. Adds current site, media and 
+    Sends an email with text and HTML content. Adds current site, media and
     static URLs to template context.
+
+    The optional ``attachments`` arguments is a list of tuples, one for
+    each attachment, with the following positional elements in each tuple:
+        * filename (The filename for the attachement, including file extension)
+        * content (The raw file content)
+        * mime_type (The content mime type, i.e application/pdf)
 
     If ``template_prefix`` is 'account/password_reset', the following templates
     are used:
@@ -39,7 +45,7 @@ def send_html_email(recipients, template_prefix, context={}, from_address=None, 
             context['MEDIA_URL'] = settings.MEDIA_URL
         else:
             context['MEDIA_URL'] = 'http://%s%s' % (
-                Site.objects.get_current().domain, 
+                Site.objects.get_current().domain,
                 settings.MEDIA_URL
             )
 
@@ -48,7 +54,7 @@ def send_html_email(recipients, template_prefix, context={}, from_address=None, 
             context['STATIC_URL'] = settings.STATIC_URL
         else:
             context['STATIC_URL'] = 'http://%s%s' % (
-                Site.objects.get_current().domain, 
+                Site.objects.get_current().domain,
                 settings.STATIC_URL
             )
 
@@ -65,20 +71,30 @@ def send_html_email(recipients, template_prefix, context={}, from_address=None, 
 
     # Compose the email
     msg = EmailMultiAlternatives(
-        subject, 
-        text_content, 
-        from_address, 
-        recipients, 
+        subject,
+        text_content,
+        from_address,
+        recipients,
         headers=headers
     )
     msg.attach_alternative(html_content, 'text/html')
+
+    # Attachments
+    for attachment in attachments:
+
+        # Attach each filename, content, mime_type tuple
+        msg.attach(
+            attachment[0],
+            attachment[1],
+            attachment[2],
+        )
 
     # Try to send mail, log exceptions
     try:
         msg.send(fail_silently=False)
     except Exception:
         logger.exception('Sending email to %s with subject "%s" failed.' % (
-            recipients, 
+            recipients,
             subject
         ))
         return False
