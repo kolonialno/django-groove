@@ -94,5 +94,14 @@ Wrapper around TemplateView generic view with a login required decorator.
 
 Example usage in URL config:
 
-    url(r'^secret/$', LimitedTemplateView.as_view(template_name='secret.html'), name='secret'),
+    url(r'^secret/$', LimitedTemplateView.as_view(
+		template_name='secret.html'), name='secret'),
 
+
+### `groove.views.generic.ExtraContextTemplateView`
+
+Extends TemplateView to accept a dictionary of additional context.
+
+Example usage in URL config:
+	url(r'^foo/$', LimitedTemplateView.as_view(
+		template_name='foo.html', extra_context={'foo': 'bar'})),

@@ -14,3 +14,23 @@ class LimitedTemplateView(TemplateView):
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
         return super(LimitedTemplateView, self).dispatch(*args, **kwargs)
+
+
+class ExtraContextTemplateView(TemplateView):
+    """
+    Extends TemplateView to accept a dictionary of additional context.
+
+    Example usage in URL config:
+        url(r'^foo/$', LimitedTemplateView.as_view(
+            template_name='foo.html', extra_context={'foo': 'bar'})),
+    """
+
+    extra_context = None
+
+    def get_context_data(self, **kwargs):
+        context = super(ExtraContextTemplateView, self).get_context_data(**kwargs)
+
+        if self.extra_context is not None:
+            context.update(self.extra_context)
+
+        return context
