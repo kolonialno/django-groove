@@ -4,8 +4,6 @@ django-groove is a Django app with various utilities, such as a template
 context processor that adds the current Django Site object and an utility
 method for sending HTML mail.
 
-This is an early draft and work in progress.
-
 
 ## Installation
 
@@ -103,5 +101,6 @@ Example usage in URL config:
 Extends TemplateView to accept a dictionary of additional context.
 
 Example usage in URL config:
+
 	url(r'^foo/$', LimitedTemplateView.as_view(
 		template_name='foo.html', extra_context={'foo': 'bar'})),
