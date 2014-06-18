@@ -21,7 +21,7 @@ class ExtraContextTemplateView(TemplateView):
     Extends TemplateView to accept a dictionary of additional context.
 
     Example usage in URL config:
-        url(r'^foo/$', LimitedTemplateView.as_view(
+        url(r'^foo/$', ExtraContextTemplateView.as_view(
             template_name='foo.html', extra_context={'foo': 'bar'})),
     """
 
