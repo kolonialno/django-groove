@@ -1,5 +1,8 @@
 # Django Groove Changelog
 
+## 0.4.5 (2015-05-28)
+* Added new timezone utility method: `datetime_midnight_date`.
+
 ## 0.4.0 (2014-06-18)
 * Added generic view: `ExtraContextTemplateView`.
 
