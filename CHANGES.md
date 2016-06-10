@@ -1,5 +1,8 @@
 # Django Groove Changelog
 
+## 0.4.6 (2016-06-10)
+* Added new timezone utility method: `datetime_aware`.
+
 ## 0.4.5 (2015-05-28)
 * Added new timezone utility method: `datetime_midnight_date`.
 
