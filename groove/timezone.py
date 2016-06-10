@@ -35,5 +35,6 @@ def datetime_aware(year, month, day, hour, minute, second):
     """
     Return a datetime aware object with current local timezone.
     """
+
     _datetime = datetime(year, month, day, hour, minute, second)
     return timezone.make_aware(_datetime, timezone.get_current_timezone())
